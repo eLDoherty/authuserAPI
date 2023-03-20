@@ -14,13 +14,13 @@ export const getUsers = async(req, res) => {
 }
  
 export const Register = async(req, res) => {
-    const { name, email, password, confPassword } = req.body;
+    const { username, email, password, confPassword } = req.body;
     if(password !== confPassword) return res.status(400).json({msg: "Password and Confirm Password do not match"});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try {
         await Users.create({
-            name: name,
+            username: username,
             email: email,
             password: hashPassword
         });
@@ -32,10 +32,10 @@ export const Register = async(req, res) => {
  
 export const Login = async(req, res) => {
     try {
-        const user = await Users.findAll({
+        const user = await Users.findAll({ 
             where:{
                 email: req.body.email
-            }
+            } 
         });
         const match = await bcrypt.compare(req.body.password, user[0].password);
         if(!match) return res.status(400).json({msg: "Wrong Password"});

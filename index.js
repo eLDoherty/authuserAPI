@@ -6,7 +6,7 @@ import router from "./app/routes/index.js";
 dotenv.config();
 const app = express();
  
-app.use(cors({ credentials:true, origin:'http://localhost:3000' }));
+app.use(cors({ credentials:true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(router);

@@ -13,7 +13,7 @@ const Users = conn.define('users', {
     password: {
         type: DataTypes.STRING
     }
-}, { freezeTableName: true });
+}, { freezeTableName: true, timestamps: false, createdAt: false });
 
 (async () => {
     await conn.sync();

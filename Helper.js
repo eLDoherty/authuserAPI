@@ -19,3 +19,7 @@ export const existEmail = async (email) => {
 
 }
 
+export const isHasSpecialChar = (str) => {
+    const regex = /[^a-zA-Z0-9@._-]/g;
+    return str.match(regex) ? true : false;
+}

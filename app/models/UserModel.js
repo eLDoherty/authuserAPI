@@ -12,7 +12,10 @@ const Users = conn.define('users', {
     },
     password: {
         type: DataTypes.STRING
-    }
+    },
+    temp_token: {
+        type:DataTypes.TEXT
+    },
 }, { freezeTableName: true, timestamps: false, createdAt: false });
 
 (async () => {

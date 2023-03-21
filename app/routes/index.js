@@ -2,6 +2,7 @@ import express from "express";
 import { getUsers, Register, Login, Logout } from "../controllers/UserController.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshTokens.js";
+import { RegisterValidation } from "../middleware/RegisterValidation.js";
  
 const router = express.Router();
  
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/users', verifyToken, getUsers);
-router.post('/users', Register);
+router.post('/users',RegisterValidation, Register);
 router.post('/login', Login);
 router.get('/token', refreshToken);
 router.delete('/logout', Logout);
